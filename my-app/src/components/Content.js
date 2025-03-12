@@ -1,7 +1,8 @@
 // Content.js
 import React, { Component } from "react";
-import Loader from "./Loader";
-import css from "./Loader.module.css";
+import Loader from "./Loader"; // Import the Loader component
+import PostItem from "./PostItem"; // Assuming you have a PostItem component
+
 
 class Content extends Component {
   constructor(props) {
@@ -12,25 +13,20 @@ class Content extends Component {
   }
 
   componentDidMount() {
-    // Simulate an API fetch delay
-    this.timer = setTimeout(() => {
+    // Simulate an API fetch delay with a timer
+    setTimeout(() => {
       this.setState({ isLoaded: true });
-    }, 2000);
-  }
-
-  componentWillUnmount() {
-    // Clean up the timer when the component is unmounted
-    clearTimeout(this.timer);
+    }, 2000); // Update to be loaded after 2 seconds
   }
 
   render() {
     return (
-      <div className={css.SearchResults}>
+      <div className="SearchResults">
         {this.state.isLoaded ? (
-          // Render the PostItem component when isLoaded is true
+          // Render PostItem component if loaded
           <PostItem />
         ) : (
-          // Render the Loader component when isLoaded is false
+          // Otherwise, render Loader
           <Loader />
         )}
       </div>
