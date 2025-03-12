@@ -1,29 +1,38 @@
+// Content.js
 import React, { Component } from "react";
-import Loader from "./Loader"; // Import the Loader component
-import css from "./YourStyles.module.css"; // Adjust to your actual styles file
-import PostItem from "./PostItem"; // Adjust this import according to your project structure
+import Loader from "./Loader";
+import css from "./Loader.module.css";
 
 class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      // Add other state properties if needed
     };
   }
 
-  // Lifecycle method can be added here
   componentDidMount() {
-    setTimeout(() => {
+    // Simulate an API fetch delay
+    this.timer = setTimeout(() => {
       this.setState({ isLoaded: true });
-    }, 2000); // Update state after 2 seconds
+    }, 2000);
+  }
+
+  componentWillUnmount() {
+    // Clean up the timer when the component is unmounted
+    clearTimeout(this.timer);
   }
 
   render() {
     return (
       <div className={css.SearchResults}>
-        {!this.state.isLoaded ? <Loader /> : <PostItem />}{" "}
-        {/* Render Loader or PostItem based on isLoaded */}
+        {this.state.isLoaded ? (
+          // Render the PostItem component when isLoaded is true
+          <PostItem />
+        ) : (
+          // Render the Loader component when isLoaded is false
+          <Loader />
+        )}
       </div>
     );
   }

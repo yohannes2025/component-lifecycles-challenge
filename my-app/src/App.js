@@ -1,10 +1,9 @@
-import css from './App.module.css';
-import Sidebar from "./components/Sidebar";
+import React from "react";
+import Content from "./components/Content"; // ✅ Import Content component
 
 function App() {
   return (
-    <div className={css.App}>
-      {/* Add your components here */}
+    <div className="App">
       <Content />
     </div>
   );
